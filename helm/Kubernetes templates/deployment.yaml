@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-deployment
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: ip-reverse
+  template:
+    metadata:
+      labels:
+        app: ip-reverse
+    spec:
+      containers:
+      - name: ip-reverse
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        ports:
+        - containerPort: 3000
+        env:
+        - name: MONGODB_URI
+          value: {{ .Values.mongodb.uri }}

@@ -1,0 +1,13 @@
+replicaCount: 2
+
+image:
+  repository: 111728998314.dkr.ecr.eu-west-1.amazonaws.com/ip-reverse
+  tag: latest
+  pullPolicy: Always
+
+service:
+  type: LoadBalancer
+  port: 80
+
+mongodb:
+  uri: mongodb://mongodb-service:27017/ip-reverse
